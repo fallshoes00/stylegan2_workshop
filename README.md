@@ -7,7 +7,7 @@ style gan 最大的特似是可以做mixing style，把input的圖片找出彼�
 ## Literature Review
 GAN: 同時訓練discriminator與generator，generator要努力產出假的圖片不被discriminator發現，discriminator則是要努力去判斷圖片的真假。
 Style gan1: 能達到的task與Introduction介紹的類似，但是在人像的細節處(如頭髮)會有些水珠、鬼影等現象。
-
+![image](https://raw.githubusercontent.com/fallshoes00/stylegan2_workshop-master/main/%E6%B0%B4%E7%8F%A0.PNG)
 ## Dataset
 StyleGAN trained with Flickr-Faces-HQ dataset at 1024×1024.
 StyleGAN trained with CelebA-HQ dataset at 1024×1024.
@@ -18,7 +18,7 @@ StyleGAN1 -
 
 ## Main Approach
 在這次任務中，使用pretrained model + 8張網路找的人向圖片再去尋找latent code，latent variable z經過mapping network變為w，z是均勻分布的隨機向量，要變為w是因為在feature中不是均勻分布。
-style mixing則是透過把不同的latent code z1和z2輸入mapping network去得到w1和w2代表兩種不同的style，再透過synthesis network去取得交叉點，交叉之前用w1，交叉之後使用w2。如此生成的圖片就去友兩者source的特徵。
+style mixing則是透過把不同的latent code z1和z2輸入mapping network去得到w1和w2代表兩種不同的style，再透過synthesis network去取得交叉點，交叉之前用w1，交叉之後使用w2。如此生成的圖片就包含兩者source的特徵。
 
 ## Metric
 在這個部分論文有使用FID, Path length, Precision, Recall在FFHQ資料庫、LSUN Car資料庫做評比，但因為我僅使用並且重train style的部分，所以這個部分比較缺乏。
