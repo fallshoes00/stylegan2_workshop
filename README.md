@@ -19,7 +19,7 @@ StyleGAN1:
 
 ## Main Approach
 在這次任務中，使用pretrained model + 8張網路找的人向圖片再去尋找latent code，latent variable z經過mapping network變為w，z是均勻分布的隨機向量，要變為w是因為在feature中不是均勻分布。
-style mixing則是透過把不同的latent code z1和z2輸入mapping network去得到w1和w2代表兩種不同的style，再透過synthesis network去取得交叉點，交叉之前用w1，交叉之後使用w2。如此生成的圖片就去友兩者source的特徵。
+style mixing則是透過把不同的latent code z1和z2輸入mapping network去得到w1和w2代表兩種不同的style，再透過synthesis network去取得交叉點，交叉之前用w1，交叉之後使用w2。如此生成的圖片就具有兩者source的特徵。
 
 ## Metric
 在這個部分論文有使用FID, Path length, Precision, Recall在FFHQ資料庫、LSUN Car資料庫做評比，但因為我僅使用並且重train style的部分，所以這個部分比較缺乏。
