@@ -1,39 +1,40 @@
+## Introduction
+style gan2 是style gan的改良版，主要功能可以透過少量的訓練資料來合成出特定的風格。
+Style gan是由mapping network和Synthesis network組成，前者控制生成圖像的style，後者用於生成圖片。
+mapping network要對latent space作解藕，去找出特徵間的關係，找到的隱藏特徵即為latent code，而latent code組成的空間就稱為latent space
+style gan 最大的特似是可以做mixing style，把input的圖片找出彼此之間的feature，會以表格方式去套用兩者的feature。
+
+## Literature Review
+GAN: 同時訓練discriminator與generator，generator要努力產出假的圖片不被discriminator發現，discriminator則是要努力去判斷圖片的真假。
+Style gan1: 能達到的task與Introduction介紹的類似，但是在人像的細節處(如頭髮)會有些水珠、鬼影等現象。
+
+## Dataset
+StyleGAN trained with Flickr-Faces-HQ dataset at 1024×1024.
+StyleGAN trained with CelebA-HQ dataset at 1024×1024.
+StyleGAN trained with LSUN Bedroom dataset at 256×256.
+
+## Baseline
+StyleGAN
+
+## Main Approach
+在這次任務中，使用pretrained model + 8張網路找的人向圖片再去尋找latent code，latent variable z經過mapping network變為w，z是均勻分布的隨機向量，要變為w是因為在feature中不是均勻分布。
+style mixing則是透過把不同的latent code z1和z2輸入mapping network去得到w1和w2代表兩種不同的style，再透過synthesis network去取得交叉點，交叉之前用w1，交叉之後使用w2。如此生成的圖片就去友兩者source的特徵。
+
+## Metric
+在這個部分論文有使用FID, Path length, Precision, Recall在FFHQ資料庫、LSUN Car資料庫做評比，但因為我僅使用並且重train style的部分，所以這個部分比較缺乏。
+
+## Results & Analysis
+可以從PPT中看到，在8*8的表格中都具有其各自的特色。
+另外，有嘗試進行執行動漫腳色與真人的合成，效果並不是很理想，或許可以加入future work的部分。
+
 ## Requirements
 
 * TensorFlow 1.14 or 1.15 with GPU support. 
 * CUDA 10.0 toolkit and cuDNN 7.5.
+## 
 
-## Preparing datasets
-Datasets are stored as multi-resolution TFRecords, similar to the [original StyleGAN](https://github.com/NVlabs/stylegan). Each dataset consists of multiple `*.tfrecords` files stored under a common directory, e.g., `~/datasets/ffhq/ffhq-r*.tfrecords`. In the following sections, the datasets are referenced using a combination of `--dataset` and `--data-dir` arguments, e.g., `--dataset=ffhq --data-dir=~/datasets`.
 
-**FFHQ**. To download the [Flickr-Faces-HQ](https://github.com/NVlabs/ffhq-dataset) dataset as multi-resolution TFRecords, run:
 
-```.bash
-pushd ~
-git clone https://github.com/NVlabs/ffhq-dataset.git
-cd ffhq-dataset
-python download_ffhq.py --tfrecords
-popd
-python dataset_tool.py display ~/ffhq-dataset/tfrecords/ffhq
-```
-
-**LSUN**. Download the desired LSUN categories in LMDB format from the [LSUN project page](https://www.yf.io/p/lsun). To convert the data to multi-resolution TFRecords, run:
-
-```.bash
-python dataset_tool.py create_lsun_wide ~/datasets/car ~/lsun/car_lmdb --width=512 --height=384
-python dataset_tool.py create_lsun ~/datasets/cat ~/lsun/cat_lmdb --resolution=256
-python dataset_tool.py create_lsun ~/datasets/church ~/lsun/church_outdoor_train_lmdb --resolution=256
-python dataset_tool.py create_lsun ~/datasets/horse ~/lsun/horse_lmdb --resolution=256
-```
-
-**Custom**. Create custom datasets by placing all training images under a single directory. The images must be square-shaped and they must all have the same power-of-two dimensions. To convert the images to multi-resolution TFRecords, run:
-
-```.bash
-python dataset_tool.py create_from_images ~/datasets/my-custom-dataset ~/my-custom-images
-python dataset_tool.py display ~/datasets/my-custom-dataset
-```
-
-## Using pre-trained networks
 
 Pre-trained networks are stored as `*.pkl` files on the [StyleGAN2 Google Drive folder](https://drive.google.com/open?id=1QHc-yF5C3DChRwSdZKcx1w6K8JvSxQi7). Below, you can either reference them directly using the syntax `gdrive:networks/<filename>.pkl`, or download them manually and reference by filename.
 
