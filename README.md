@@ -14,7 +14,7 @@ StyleGAN trained with CelebA-HQ dataset at 1024×1024.
 StyleGAN trained with LSUN Bedroom dataset at 256×256.
 
 ## Baseline
-StyleGAN
+StyleGAN1 - 
 
 ## Main Approach
 在這次任務中，使用pretrained model + 8張網路找的人向圖片再去尋找latent code，latent variable z經過mapping network變為w，z是均勻分布的隨機向量，要變為w是因為在feature中不是均勻分布。
