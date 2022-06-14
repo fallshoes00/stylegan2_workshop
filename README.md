@@ -7,7 +7,7 @@ style gan 最大的特似是可以做mixing style，把input的圖片找出彼�
 ## Literature Review
 GAN: 同時訓練discriminator與generator，generator要努力產出假的圖片不被discriminator發現，discriminator則是要努力去判斷圖片的真假。
 Style gan1: 能達到的task與Introduction介紹的類似，但是在人像的細節處(如頭髮)會有些水珠、鬼影等現象。
-
+![image](https://raw.githubusercontent.com/fallshoes00/stylegan2_workshop-master/main/%E6%B0%B4%E7%8F%A0.PNG)
 ## Dataset
 StyleGAN trained with Flickr-Faces-HQ dataset at 1024×1024.
 StyleGAN trained with CelebA-HQ dataset at 1024×1024.
