@@ -50,7 +50,7 @@ Code: [stylegan2encoder.ipynb]
 * CUDA 10.0 toolkit and cuDNN 7.5.
 * All parameters are set by default.
 ## Contribution of each member
-這個組只剩下我自己，其他人都期中就沒有回應了，後來助教的comment說題目太大可能太難，在實際動手後就發現真的目標過大，無法完成，因此最後是挑了個之前看到的很有趣的Disnep變臉來玩玩看，沒想到做出來結果超級怪的...
+這個組只剩下我自己，其他人都期中就沒有回應了，後來助教的comment說題目太大可能太難，在實際動手後就發現真的目標過大，無法完成，因此最後決定跳船楓之谷，來實際試看看之前覺得很有趣的Disnep變臉來玩玩看，沒想到做出來結果超級怪的...
 
 ## Citations
 
