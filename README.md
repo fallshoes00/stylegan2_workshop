@@ -28,6 +28,14 @@ style mixing則是透過把不同的latent code z1和z2輸入mapping network去�
 可以從PPT中看到，在8*8的表格中都具有其各自的特色。
 另外，有嘗試進行執行動漫腳色與真人的合成，效果並不是很理想，或許可以加入future work的部分。
 
+## Error Analysis
+優點:搞出來的東西很有趣
+缺點:
+專案老舊，使用tensorflow1.14，僅支援CUDA10，而最新的RTX30系列顯卡為11.0以上，故使用colab來操作
+要訓練一段時間，而且在colab的平台上很容易斷線就要整個重新來過。
+人臉看起來也有許多不自然的部分(如下圖)。
+![image](https://github.com/fallshoes00/stylegan2_workshop-master/blob/main/%E6%80%AA%E6%80%AA%E7%9A%84.PNG?raw=true)
+
 ## Requirements
 
 * TensorFlow 1.14 or 1.15 with GPU support. 
